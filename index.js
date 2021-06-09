@@ -248,6 +248,21 @@ SyscoinJSLib.prototype.createTransaction = async function (txOpts, changeAddress
   return await this.signAndSend(psbt, utils.getAssetsRequiringNotarization(psbt, utxos.assets))
 }
 
+/* convertToTrezorFormat
+Purpose: Convert psbt output to trezor format.
+Param txOpts: Optional. Transaction options. Fields are described below:
+  Field rbf. Optional. True by default. Replace-by-fee functionality allowing one to bump transaction by increasing fee for UTXOs used.
+  Field assetWhiteList. Optional. null by default. Allows UTXO's to be added from assets in the whitelist or the asset being sent
+Param changeAddress: Optional. Change address if defined is where change outputs are sent to. If not defined and HDSigner is defined then a new change address will be automatically created using the next available change address index in the HD path
+Param outputsArr: Required. Output array defining tuples to which addresses to send coins to and how much
+Param feeRate: Optional. Defaults to 10 satoshi per byte. How many satoshi per byte the network fee should be paid out as.
+Param fromXpubOrAddress: Optional. If wanting to fund from a specific XPUB or address specify this field should be set
+Param utxos: Optional. Pass in specific utxos to fund a transaction, should be sanitized using utils.sanitizeBlockbookUTXOs()
+Returns: PSBT if if HDSigner is set or result object which is used to create PSBT and sign/send if xpub/address are passed in to fund transaction
+*/
+SyscoinJSLib.prototype.convertToTrezorFormat = async function (txVersion, inputs, outputs) {
+}
+
 /* assetNew
 Purpose: Create new Syscoin SPT.
 Param assetOpts: Required. Asset details. Fields described below:
